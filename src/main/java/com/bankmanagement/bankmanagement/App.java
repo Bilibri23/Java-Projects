@@ -23,13 +23,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-//        Employee employee = new Employee();
-//        employee.setUsername("emmanuel");
-//        String password = "password";
-//        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-//        employee.setPassword(bcryptHashString);
-//        EmployeeDao employeeDao = new EmployeeDao();
-//        employeeDao.add(employee);
+       Employee employee = new Employee();
+      employee.setUsername("emmanuel");
+      String password = "password";
+      String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+       employee.setPassword(bcryptHashString);
+       EmployeeDao employeeDao = new EmployeeDao();
+       employeeDao.add(employee);
 
 //        User user = new User();
 //        user.setFirstName("Example");

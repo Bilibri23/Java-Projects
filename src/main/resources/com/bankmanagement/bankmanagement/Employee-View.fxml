@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="613.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bankmanagement.bankmanagement.controller.EmployeeViewController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="34.0" prefHeight="509.0" prefWidth="315.0" style="-fx-background-color: black;">
+         <children>
+            <TextField fx:id="txtaddress1" layoutX="158.0" layoutY="10.0" />
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="64.0" text="address1" />
+            <Label layoutX="14.0" layoutY="51.0" prefHeight="17.0" prefWidth="64.0" text="address2" />
+            <Label layoutX="14.0" layoutY="80.0" prefHeight="17.0" prefWidth="64.0" text="city" />
+            <Label layoutX="14.0" layoutY="117.0" prefHeight="17.0" prefWidth="83.0" text="created_date" />
+            <Label layoutX="14.0" layoutY="154.0" prefHeight="17.0" prefWidth="64.0" text="email" />
+            <Label layoutX="14.0" layoutY="196.0" prefHeight="17.0" prefWidth="64.0" text="first_name" />
+            <Label layoutX="14.0" layoutY="238.0" prefHeight="17.0" prefWidth="64.0" text="last_name" />
+            <Label layoutX="14.0" layoutY="281.0" prefHeight="17.0" prefWidth="83.0" text="last_updated" />
+            <Label layoutX="14.0" layoutY="316.0" prefHeight="17.0" prefWidth="64.0" text="password" />
+            <Label layoutX="14.0" layoutY="359.0" prefHeight="17.0" prefWidth="83.0" text="phone_number" />
+            <Label layoutX="14.0" layoutY="394.0" prefHeight="17.0" prefWidth="64.0" text="role" />
+            <Label layoutX="14.0" layoutY="433.0" prefHeight="17.0" prefWidth="64.0" text="status" />
+            <Label layoutX="14.0" layoutY="468.0" prefHeight="17.0" prefWidth="64.0" text="username" />
+            <TextField fx:id="txtaddress2" layoutX="158.0" layoutY="38.0" />
+            <TextField fx:id="txtcity" layoutX="158.0" layoutY="76.0" />
+            <TextField fx:id="txtcreated_date" layoutX="153.0" layoutY="113.0" />
+            <TextField fx:id="txtemail" layoutX="153.0" layoutY="150.0" />
+            <TextField fx:id="txtfirst_name" layoutX="155.0" layoutY="192.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="txtlast_name" layoutX="153.0" layoutY="234.0" />
+            <TextField fx:id="txtlast_updated" layoutX="155.0" layoutY="277.0" />
+            <TextField fx:id="txtpassword" layoutX="153.0" layoutY="312.0" />
+            <TextField fx:id="txtphone_number" layoutX="153.0" layoutY="355.0" />
+            <TextField fx:id="txtrole" layoutX="153.0" layoutY="390.0" />
+            <TextField fx:id="txtstatus" layoutX="151.0" layoutY="429.0" />
+            <TextField fx:id="txtusername" layoutX="151.0" layoutY="472.0" />
+         </children>
+      </AnchorPane>
+      <FontAwesomeIconView glyphName="USERS" layoutX="14.0" layoutY="21.0" size="20" text="" wrappingWidth="44.19048595428467" />
+      <Label layoutX="44.0" layoutY="6.0" prefHeight="28.0" prefWidth="223.0" text="Employees Management">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="336.0" layoutY="34.0" prefHeight="509.0" prefWidth="913.0">
+        <columns>
+          <TableColumn fx:id="idColmn" prefWidth="54.666656494140625" text="id" />
+          <TableColumn fx:id="address1Colmn" prefWidth="66.0" text="address1" />
+            <TableColumn fx:id="address2Colmn" prefWidth="62.0" text="address2" />
+            <TableColumn fx:id="cityColmn" prefWidth="53.99993896484375" text="city" />
+            <TableColumn fx:id="created_dateColmn" prefWidth="82.66668701171875" text="created_date" />
+            <TableColumn fx:id="emailColmn" prefWidth="63.33331298828125" text="email" />
+            <TableColumn fx:id="first_nameColmn" prefWidth="80.66668701171875" text="first_name" />
+            <TableColumn fx:id="last_nameColmn" prefWidth="69.33331298828125" text="last_name" />
+            <TableColumn fx:id="last_updatedColmn" prefWidth="68.66668701171875" text="last_updated" />
+            <TableColumn fx:id="passwordColmn" prefWidth="56.66668701171875" text="password" />
+            <TableColumn fx:id="phone_numberColmn" prefWidth="69.333251953125" text="phone_number" />
+            <TableColumn fx:id="roleColmn" prefWidth="60.0" text="role" />
+            <TableColumn fx:id="statusColmn" prefWidth="60.0" text="status" />
+            <TableColumn fx:id="usernameColmn" prefWidth="61.99995930989587" text="username" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAdd" layoutX="14.0" layoutY="548.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="91.0" text="Add" />
+      <Button fx:id="btnUpdate" layoutX="213.0" layoutY="548.0" mnemonicParsing="false" onAction="#Update" prefHeight="25.0" prefWidth="91.0" text="update" />
+      <Button fx:id="btnDelete" layoutX="438.0" layoutY="548.0" mnemonicParsing="false" onAction="#Delete" prefHeight="25.0" prefWidth="83.0" text="delete" />
+   </children>
+</AnchorPane>
