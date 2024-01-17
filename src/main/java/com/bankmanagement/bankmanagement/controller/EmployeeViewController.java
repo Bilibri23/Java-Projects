@@ -81,7 +81,7 @@ public class EmployeeViewController implements Initializable {
     private TextField txtcity;
 
     @FXML
-    private TextField txtcreated_date;
+    private DatePicker created_pick;
 
     @FXML
     private TextField txtemail;
@@ -95,7 +95,7 @@ public class EmployeeViewController implements Initializable {
     private TextField txtlast_name;
 
     @FXML
-    private TextField txtlast_updated;
+    private DatePicker last_pick;
 
     @FXML
     private TextField txtpassword;
@@ -107,7 +107,7 @@ public class EmployeeViewController implements Initializable {
     private TextField txtrole;
 
     @FXML
-    private TextField txtstatus;
+    private ChoiceBox<UserStatus> statusbox;
 
     @FXML
     private TextField txtusername;
@@ -129,15 +129,15 @@ public class EmployeeViewController implements Initializable {
         address1 = txtaddress1.getText();
         address2 = txtaddress2.getText();
         city = txtcity.getText();
-        created_date = Date.valueOf(txtcreated_date.getText());
+        created_date = Date.valueOf(created_pick.getValue());
         email = txtemail.getText();
         first_name = txtfirst_name.getText();
         last_name = txtlast_name.getText();
-        last_updated = Date.valueOf(txtlast_updated.getText());
+        last_updated = Date.valueOf(last_pick.getValue());
         password = txtpassword.getText();
         phone_number = txtphone_number.getText();
         role = txtrole.getText();
-        status = UserStatus.valueOf(txtstatus.getText());
+        status = statusbox.getValue();
         username  = txtusername.getText();
 
         try{
@@ -160,6 +160,7 @@ public class EmployeeViewController implements Initializable {
             pst.setString(12, String.valueOf(status));
             pst.setString(13, username);
 
+
             pst.executeUpdate();
 
 
@@ -174,21 +175,7 @@ public class EmployeeViewController implements Initializable {
 
             table(); // calling the method that transfers information in the table
 
-            // refreshing the contents that was entered in the employee form
 
-            txtaddress1.setText("");
-            txtaddress2.setText("");
-            txtcity.setText("");
-            txtemail.setText("");
-            txtcreated_date.setText("");
-            txtfirst_name.setText("");
-            txtlast_name.setText("");
-            txtlast_updated.setText("");
-            txtpassword.setText("");
-            txtphone_number.setText("");
-            txtrole.setText("");
-            txtstatus.setText("");
-            txtusername.setText("");
 
 
 
@@ -242,15 +229,20 @@ public class EmployeeViewController implements Initializable {
                     txtaddress1.setText(table.getItems().get(myIndex).getAddress1());
                     txtaddress2.setText(table.getItems().get(myIndex).getAddress2());
                     txtcity.setText(table.getItems().get(myIndex).getCity());
-                    txtcreated_date.setText(String.valueOf(table.getItems().get(myIndex).getCreatedDate()));
+                    //txtcreated_date.setText(String.valueOf(table.getItems().get(myIndex).getCreatedDate()));
+
+                    created_pick.setValue(Date.valueOf(String.valueOf(table.getItems().get(myIndex).getCreatedDate())).toLocalDate());
+                    
                     txtemail.setText(table.getItems().get(myIndex).getEmail());
                     txtfirst_name.setText(table.getItems().get(myIndex).getFirstName());
                     txtlast_name.setText(table.getItems().get(myIndex).getLastName());
-                    txtlast_updated.setText(String.valueOf(table.getItems().get(myIndex).getLastUpdated()));
+                    //txtlast_updated.setText(String.valueOf(table.getItems().get(myIndex).getLastUpdated()));
+                    last_pick.setValue(Date.valueOf(String.valueOf(table.getItems().get(myIndex).getCreatedDate())).toLocalDate());
                     txtpassword.setText(table.getItems().get(myIndex).getPassword());
                     txtphone_number.setText(table.getItems().get(myIndex).getPhoneNumber());
                     txtrole.setText(table.getItems().get(myIndex).getRole());
-                    txtstatus.setText(String.valueOf(table.getItems().get(myIndex).getStatus()));
+                    //txtstatus.setText(String.valueOf(table.getItems().get(myIndex).getStatus()));
+                    statusbox.setValue(table.getItems().get(myIndex).getStatus());
                     txtusername.setText(table.getItems().get(myIndex).getUsername());
 
                 }
@@ -295,15 +287,15 @@ public class EmployeeViewController implements Initializable {
         address1 = txtaddress1.getText();
         address2 = txtaddress2.getText();
         city = txtcity.getText();
-        created_date = Date.valueOf(txtcreated_date.getText());
+        created_date = Date.valueOf(created_pick.getValue());
         email = txtemail.getText();
         first_name = txtfirst_name.getText();
         last_name = txtlast_name.getText();
-        last_updated = Date.valueOf(txtlast_updated.getText());
+        last_updated = Date.valueOf(last_pick.getValue());
         password = txtpassword.getText();
         phone_number = txtphone_number.getText();
         role = txtrole.getText();
-        status = UserStatus.valueOf(txtstatus.getText());
+        status = statusbox.getValue();
         username  = txtusername.getText();
 
         try{
@@ -323,7 +315,7 @@ public class EmployeeViewController implements Initializable {
             pst.setString(11, role);
             pst.setString(12, String.valueOf(status));
             pst.setString(13, username);
-            pst.setInt(4, Integer.parseInt(String.valueOf(id)));
+            pst.setInt(14, Integer.parseInt(String.valueOf(id)));
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("employee registration");
@@ -349,6 +341,7 @@ public class EmployeeViewController implements Initializable {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "marc2023brian2004");
+
         } catch (ClassNotFoundException e) {
 
         } catch (SQLException e) {
@@ -358,6 +351,7 @@ public class EmployeeViewController implements Initializable {
     ObservableList<Employee> employees = FXCollections.observableArrayList();
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
+        statusbox.getItems().addAll(UserStatus.values());
 
         List<Employee> employeeList = employeeDao.findAll();
         idColmn.setCellValueFactory(new PropertyValueFactory<Employee, Long>("id"));
@@ -375,6 +369,7 @@ public class EmployeeViewController implements Initializable {
         statusColmn.setCellValueFactory(new PropertyValueFactory<Employee, UserStatus>("status"));
         usernameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("username"));
         employees.addAll(employeeList);
+
 
         table.setItems(employees);
     }

@@ -25,16 +25,16 @@
             <Label layoutX="14.0" layoutY="468.0" prefHeight="17.0" prefWidth="64.0" text="username" />
             <TextField fx:id="txtaddress2" layoutX="158.0" layoutY="38.0" />
             <TextField fx:id="txtcity" layoutX="158.0" layoutY="76.0" />
-            <TextField fx:id="txtcreated_date" layoutX="153.0" layoutY="113.0" />
             <TextField fx:id="txtemail" layoutX="153.0" layoutY="150.0" />
             <TextField fx:id="txtfirst_name" layoutX="155.0" layoutY="192.0" prefHeight="25.0" prefWidth="149.0" />
             <TextField fx:id="txtlast_name" layoutX="153.0" layoutY="234.0" />
-            <TextField fx:id="txtlast_updated" layoutX="155.0" layoutY="277.0" />
             <TextField fx:id="txtpassword" layoutX="153.0" layoutY="312.0" />
             <TextField fx:id="txtphone_number" layoutX="153.0" layoutY="355.0" />
             <TextField fx:id="txtrole" layoutX="153.0" layoutY="390.0" />
-            <TextField fx:id="txtstatus" layoutX="151.0" layoutY="429.0" />
             <TextField fx:id="txtusername" layoutX="151.0" layoutY="472.0" />
+            <DatePicker fx:id="created_pick" layoutX="157.0" layoutY="113.0" prefHeight="25.0" prefWidth="149.0" />
+            <DatePicker fx:id="last_pick" layoutX="154.0" layoutY="277.0" prefHeight="25.0" prefWidth="160.0" />
+            <ChoiceBox fx:id="statusbox" layoutX="151.0" layoutY="429.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
       <FontAwesomeIconView glyphName="USERS" layoutX="14.0" layoutY="21.0" size="20" text="" wrappingWidth="44.19048595428467" />
