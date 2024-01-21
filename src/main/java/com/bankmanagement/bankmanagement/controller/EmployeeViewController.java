@@ -157,7 +157,7 @@ public class EmployeeViewController implements Initializable {
             pst.setString(9, password);
             pst.setString(10, phone_number);
             pst.setString(11, role);
-            pst.setString(12, String.valueOf(status));
+            pst.setInt(12, UserStatus.ACTIVE.ordinal());
             pst.setString(13, username);
 
 
@@ -211,8 +211,9 @@ public class EmployeeViewController implements Initializable {
                     em.setPassword(rs.getString("password"));
                     em.setPhoneNumber(rs.getString("phone_number"));
                     em.setRole(rs.getString("role"));
-                    em.setStatus(UserStatus.valueOf(rs.getString("status")));
+                    em.setStatus(UserStatus.valueOf(String.valueOf(rs.getInt("status"))));
                     em.setUsername(rs.getString("username"));
+
                     employees.add(em);
                 }
             }
@@ -315,7 +316,7 @@ public class EmployeeViewController implements Initializable {
             pst.setString(11, role);
             pst.setString(12, String.valueOf(status));
             pst.setString(13, username);
-            pst.setInt(14, Integer.parseInt(String.valueOf(id)));
+            pst.setLong(14, id);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("employee registration");
@@ -351,6 +352,7 @@ public class EmployeeViewController implements Initializable {
     ObservableList<Employee> employees = FXCollections.observableArrayList();
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
+        connect();
         statusbox.getItems().addAll(UserStatus.values());
 
         List<Employee> employeeList = employeeDao.findAll();
@@ -358,19 +360,19 @@ public class EmployeeViewController implements Initializable {
         address1Colmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address1"));
         address2Colmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address2"));
         cityColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("city"));
-        created_dateColmn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("created_date"));
+        created_dateColmn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("createdDate"));
         emailColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
-        first_nameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("first_name"));
-        last_nameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("last_name"));
-        last_updatedColmn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("last_updated"));
+        first_nameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
+        last_nameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
+        last_updatedColmn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("lastUpdated"));
         passwordColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("password"));
-        phone_numberColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phone_number"));
+        phone_numberColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
         roleColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("role"));
         statusColmn.setCellValueFactory(new PropertyValueFactory<Employee, UserStatus>("status"));
         usernameColmn.setCellValueFactory(new PropertyValueFactory<Employee, String>("username"));
         employees.addAll(employeeList);
 
-
+        table.setEditable(true);
         table.setItems(employees);
     }
 }
