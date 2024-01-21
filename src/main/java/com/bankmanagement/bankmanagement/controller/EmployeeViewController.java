@@ -157,7 +157,8 @@ public class EmployeeViewController implements Initializable {
             pst.setString(9, password);
             pst.setString(10, phone_number);
             pst.setString(11, role);
-            pst.setInt(12, UserStatus.ACTIVE.ordinal());
+            pst.setInt(12, status.ordinal());
+
             pst.setString(13, username);
 
 
@@ -211,7 +212,7 @@ public class EmployeeViewController implements Initializable {
                     em.setPassword(rs.getString("password"));
                     em.setPhoneNumber(rs.getString("phone_number"));
                     em.setRole(rs.getString("role"));
-                    em.setStatus(UserStatus.valueOf(String.valueOf(rs.getInt("status"))));
+                    em.setStatus(UserStatus.values()[rs.getInt("status")]);
                     em.setUsername(rs.getString("username"));
 
                     employees.add(em);
@@ -310,11 +311,11 @@ public class EmployeeViewController implements Initializable {
             pst.setString(5, email);
             pst.setString(6, first_name);
             pst.setString(7, last_name);
-            pst.setString(8, String.valueOf(last_updated));
+            pst.setDate(8, last_updated);
             pst.setString(9, password);
             pst.setString(10, phone_number);
             pst.setString(11, role);
-            pst.setString(12, String.valueOf(status));
+            pst.setInt(12, status.ordinal());
             pst.setString(13, username);
             pst.setLong(14, id);
             pst.executeUpdate();
